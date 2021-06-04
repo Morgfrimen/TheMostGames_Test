@@ -21,8 +21,9 @@ namespace TheMostGamesTask3.Algorithm.PetrenkoGoltsman
 
 		private readonly ConcurrentBag<string> _ruStrings = new();
 		private readonly ConcurrentBag<string> _enStrings = new();
-		private readonly List<float> _ruResultIndex = new List<float>();
-		private readonly List<float> _enResultIndex = new List<float>();
+
+		private readonly Dictionary<float, string> _ruDictionary = new Dictionary<float, string>();
+		private readonly Dictionary<float, string> _enDictionary = new Dictionary<float, string>();
 
 		#region Overrides of BaseAlgorithm
 
@@ -30,6 +31,11 @@ namespace TheMostGamesTask3.Algorithm.PetrenkoGoltsman
 		{
 			await SortToLanguageAsync();
 			await PetrenkoGoltsman();
+
+			foreach (float ruDictionaryKey in _ruDictionary.Keys)
+				if (_enDictionary.ContainsKey(ruDictionaryKey))
+					Result.TryAdd($"{_ruDictionary[ruDictionaryKey]} -> {_enDictionary[ruDictionaryKey]}{Environment.NewLine}");
+
 
 			return Result;
 
@@ -53,17 +59,18 @@ namespace TheMostGamesTask3.Algorithm.PetrenkoGoltsman
 				(
 					() =>
 					{
-						Task ruLanguagePetrenkoGoltsman = Task.Run(() => FindIndex(PatternReplaceRu, _ruStrings, _ruResultIndex), cancellationToken);
-						Task enLanguagePetrenkoGoltsman = Task.Run(() => FindIndex(PatternReplaceEn, _enStrings, _enResultIndex,true), cancellationToken);
+						Task ruLanguagePetrenkoGoltsman = Task.Run(() => FindIndex(PatternReplaceRu, _ruStrings, _ruDictionary), cancellationToken);
+						Task enLanguagePetrenkoGoltsman = Task.Run(() => FindIndex(PatternReplaceEn, _enStrings, _enDictionary, true), cancellationToken);
 
 						Task[] tasks = {
 							ruLanguagePetrenkoGoltsman, enLanguagePetrenkoGoltsman
 						};
 						Task.WaitAll(tasks, cancellationToken);
+
 					}, cancellationToken
 				);
 
-				void FindIndex(string pattern, IProducerConsumerCollection<string> collection,IList<float> result,bool isEn = false)
+				void FindIndex(string pattern, IProducerConsumerCollection<string> collection,IDictionary<float,string> result,bool isEn = false)
 				{
 					if (cancellationToken.IsCancellationRequested)
 						return;
@@ -86,14 +93,15 @@ namespace TheMostGamesTask3.Algorithm.PetrenkoGoltsman
 
 							int length = resultString.Length;
 							resultIndex = GetIndex(ref resultIndex, in length).Sum() * length;
-							result.Add(resultIndex);
 							if (isEn)
 							{
 								string comment = inputCommon[1];
 								int lengthComment = comment.Length;
 								resultIndexComment = GetIndex(ref resultIndexComment, in lengthComment).Sum() * lengthComment;
-								result[^1] += resultIndexComment;
+								resultIndex += resultIndexComment;
 							}
+							result.Add(resultIndex,input);
+							
 						}
 						catch (IndexOutOfRangeException)
 						{

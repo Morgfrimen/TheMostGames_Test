@@ -61,6 +61,15 @@ namespace TheMostGamesTask3.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Нет похожих элементов.
+        /// </summary>
+        public static string CountZeroResult {
+            get {
+                return ResourceManager.GetString("CountZeroResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Результат:.
         /// </summary>
         public static string DefaultResult {
