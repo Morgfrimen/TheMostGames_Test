@@ -20,15 +20,19 @@ namespace TheMostGamesTask3.Factory
 		{
 			_reader = readerSettings switch
 			{
-				ReaderSettings.ConsoleReader => new ReaderConsole(), ReaderSettings.TxtReader => new ReaderTXT(), _ => throw new NotImplementedException($"Такого {nameof(IReader)} не существует")
+				ReaderSettings.ConsoleReader => new ReaderConsole(), 
+				ReaderSettings.TxtReader => new ReaderTXT(), 
+				_ => throw new NotImplementedException($"Такого {nameof(IReader)} не существует")
 			};
 			_algorithm = algorithm switch
 			{
-				AlgorithmSettings.PetrenkoGoltsman => new PetrenkoGoltsman(_reader.StringsArray), _ => throw new NotImplementedException($"Алгоритм не найден ({nameof(BaseAlgorithm)})")
+				AlgorithmSettings.PetrenkoGoltsman => new PetrenkoGoltsman(_reader.StringsArray),
+				_ => throw new NotImplementedException($"Алгоритм не найден ({nameof(BaseAlgorithm)})")
 			};
 			_writer = writerSettings switch
 			{
-				WriterSettings.WriteConsole => new WriteConsole(), _ => throw new NotImplementedException($"Такого {nameof(IWriter)} не реализованно")
+				WriterSettings.WriteConsole => new WriteConsole(), 
+				_ => throw new NotImplementedException($"Такого {nameof(IWriter)} не реализованно")
 			};
 		}
 
