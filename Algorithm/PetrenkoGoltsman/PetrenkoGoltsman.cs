@@ -34,7 +34,7 @@ namespace TheMostGamesTask3.Algorithm.PetrenkoGoltsman
 
 			foreach (float ruDictionaryKey in _ruDictionary.Keys)
 				if (_enDictionary.ContainsKey(ruDictionaryKey))
-					Result.TryAdd($"{_ruDictionary[ruDictionaryKey]} -> {_enDictionary[ruDictionaryKey]}{Environment.NewLine}");
+					Result.TryAdd($"{_ruDictionary[ruDictionaryKey]} -> {_enDictionary[ruDictionaryKey]}{Environment.NewLine}");//TODO:Formater
 
 
 			return Result;
