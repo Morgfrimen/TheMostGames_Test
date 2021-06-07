@@ -3,9 +3,9 @@
 
 	internal interface ITableResult
 	{
-		string Test { get; set; }
-		uint CountWords { get; set; }
 		uint CountVowelLetters { get; set; }
+		uint CountWords { get; set; }
+		string Test { get; set; }
 	}
 
 }

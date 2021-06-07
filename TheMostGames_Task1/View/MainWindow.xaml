@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TheMostGames_Task1"
         xmlns:vm="clr-namespace:TheMostGames_Task1.ViewModels"
         xmlns:res="clr-namespace:TheMostGames_Task1.Properties"
         xmlns:customControl="clr-namespace:TheMostGames_Task1.CustomControl"
@@ -11,33 +10,33 @@
         FontSize="20"
         Title="Task 1" MinHeight="250" MinWidth="700">
     <Window.DataContext>
-        <vm:MainWindowViewModels/>
+        <vm:MainWindowViewModels />
     </Window.DataContext>
     <Window.Resources>
         <Style TargetType="Control">
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="5,0"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5,0" />
         </Style>
         <Style TargetType="Button" BasedOn="{StaticResource {x:Type Control}}">
-            <Setter Property="Padding" Value="25,5"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="25,5" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
         </Style>
         <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="0,0,10,0" />
         </Style>
     </Window.Resources>
     <Grid Margin="5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*" MinHeight="50"/>
-            <RowDefinition Height="95*"/>
+            <RowDefinition Height="5*" MinHeight="50" />
+            <RowDefinition Height="95*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="1*" MinWidth="170"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="1*" MinWidth="170" />
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Column="0"
@@ -46,18 +45,18 @@
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    Text="{x:Static res:Resources.Ident_Str_TextBlock}"
-                   Style="{StaticResource {x:Type TextBlock}}"/>
+                   Style="{StaticResource {x:Type TextBlock}}" />
         <customControl:TextBoxVerification Grid.Row="0"
-                 Grid.Column="1"
-                 Style="{StaticResource {x:Type Control}}"
-                 MixIndex="1"
-                 MaxIndex="20"/>
-            <Button Grid.Column="2"
+                                           Grid.Column="1"
+                                           Style="{StaticResource {x:Type Control}}"
+                                           MixIndex="1"
+                                           MaxIndex="20" />
+        <Button Grid.Column="2"
                 Grid.Row="0"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
                 Content="{x:Static res:Resources.Calculate_Button}"
-                Style="{StaticResource {x:Type Button}}"/>
+                Style="{StaticResource {x:Type Button}}" />
 
         <DataGrid Grid.Row="1"
                   Grid.Column="0"
@@ -66,24 +65,24 @@
                   Background="Transparent">
             <DataGrid.Resources>
                 <Style TargetType="TextBlock">
-                    <Setter Property="HorizontalAlignment" Value="Center"/>
-                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
                 </Style>
             </DataGrid.Resources>
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Background" Value="White" />
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate>
                                 <Border Background="{TemplateBinding Background}"
                                         MinHeight="100">
                                     <ContentControl>
-                                        <TextBlock Text="{Binding }" 
+                                        <TextBlock Text="{Binding }"
                                                    HorizontalAlignment="Center"
                                                    FontWeight="DemiBold"
                                                    TextWrapping="WrapWithOverflow"
-                                                   VerticalAlignment="Center"/>
+                                                   VerticalAlignment="Center" />
                                     </ContentControl>
                                 </Border>
                             </ControlTemplate>
@@ -92,9 +91,9 @@
                 </Style>
             </DataGrid.ColumnHeaderStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Width="3*" Header="{x:Static res:Resources.FirstColumnHeader_DataGrid}"/>
-                <DataGridTextColumn Width="*" Header="{x:Static res:Resources.SecondColumnHeader_DataGrid}"/>
-                <DataGridTextColumn Width="*" Header="{x:Static res:Resources.ThreeColumnHeader_DataGrid}"/>
+                <DataGridTextColumn Width="3*" Header="{x:Static res:Resources.FirstColumnHeader_DataGrid}" />
+                <DataGridTextColumn Width="*" Header="{x:Static res:Resources.SecondColumnHeader_DataGrid}" />
+                <DataGridTextColumn Width="*" Header="{x:Static res:Resources.ThreeColumnHeader_DataGrid}" />
             </DataGrid.Columns>
         </DataGrid>
 
