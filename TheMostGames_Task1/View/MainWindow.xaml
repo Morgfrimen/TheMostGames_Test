@@ -4,9 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheMostGames_Task1"
+        xmlns:vm="clr-namespace:TheMostGames_Task1.ViewModels"
+        xmlns:res="clr-namespace:TheMostGames_Task1.Properties"
         mc:Ignorable="d"
         FontSize="20"
         Title="Task 1" MinHeight="250" MinWidth="700">
+    <Window.DataContext>
+        <vm:MainWindowViewModels/>
+    </Window.DataContext>
     <Window.Resources>
         <Style TargetType="Control">
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -39,7 +44,7 @@
                    TextWrapping="WrapWithOverflow"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
-                   Text="Идентификаторы строк:"
+                   Text="{x:Static res:Resources.Ident_Str_TextBlock}"
                    Style="{StaticResource {x:Type TextBlock}}"/>
         <TextBox Grid.Row="0"
                  Grid.Column="1"
@@ -48,7 +53,7 @@
                 Grid.Row="0"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
-                Content="Подсчитать"
+                Content="{x:Static res:Resources.Calculate_Button}"
                 Style="{StaticResource {x:Type Button}}"/>
 
         <DataGrid Grid.Row="1"
@@ -71,7 +76,7 @@
                                 <Border Background="{TemplateBinding Background}"
                                         MinHeight="100">
                                     <ContentControl>
-                                        <TextBlock Text="{Binding}" 
+                                        <TextBlock Text="{Binding }" 
                                                    HorizontalAlignment="Center"
                                                    FontWeight="DemiBold"
                                                    TextWrapping="WrapWithOverflow"
@@ -84,9 +89,9 @@
                 </Style>
             </DataGrid.ColumnHeaderStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Width="3*" Header="Текст"/>
-                <DataGridTextColumn Width="*" Header="Количество слов"/>
-                <DataGridTextColumn Width="*" Header="Количество гласных"/>
+                <DataGridTextColumn Width="3*" Header="{x:Static res:Resources.FirstColumnHeader_DataGrid}"/>
+                <DataGridTextColumn Width="*" Header="{x:Static res:Resources.SecondColumnHeader_DataGrid}"/>
+                <DataGridTextColumn Width="*" Header="{x:Static res:Resources.ThreeColumnHeader_DataGrid}"/>
             </DataGrid.Columns>
         </DataGrid>
 
