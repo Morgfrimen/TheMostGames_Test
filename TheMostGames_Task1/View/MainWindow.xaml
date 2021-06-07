@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:TheMostGames_Task1"
         xmlns:vm="clr-namespace:TheMostGames_Task1.ViewModels"
         xmlns:res="clr-namespace:TheMostGames_Task1.Properties"
+        xmlns:customControl="clr-namespace:TheMostGames_Task1.CustomControl"
         mc:Ignorable="d"
         FontSize="20"
         Title="Task 1" MinHeight="250" MinWidth="700">
@@ -46,10 +47,12 @@
                    VerticalAlignment="Center"
                    Text="{x:Static res:Resources.Ident_Str_TextBlock}"
                    Style="{StaticResource {x:Type TextBlock}}"/>
-        <TextBox Grid.Row="0"
+        <customControl:TextBoxVerification Grid.Row="0"
                  Grid.Column="1"
-                 Style="{StaticResource {x:Type Control}}"/>
-        <Button Grid.Column="2"
+                 Style="{StaticResource {x:Type Control}}"
+                 MixIndex="1"
+                 MaxIndex="20"/>
+            <Button Grid.Column="2"
                 Grid.Row="0"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
