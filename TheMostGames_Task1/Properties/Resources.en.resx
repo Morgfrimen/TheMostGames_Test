@@ -121,7 +121,7 @@
     <value>Calculate</value>
   </data>
   <data name="FirstColumnHeader_DataGrid" xml:space="preserve">
-    <value>Text</value>
+    <value>TextRuns</value>
   </data>
   <data name="Ident_Str_TextBlock" xml:space="preserve">
     <value>Row ids:</value>
