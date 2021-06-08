@@ -8,6 +8,8 @@
         xmlns:customControl="clr-namespace:TheMostGames_Task1.CustomControl"
         mc:Ignorable="d"
         FontSize="20"
+        Height="250"
+        Width="700"
         Title="Task 1" MinHeight="250" MinWidth="700">
     <Window.DataContext>
         <vm:MainWindowViewModels />

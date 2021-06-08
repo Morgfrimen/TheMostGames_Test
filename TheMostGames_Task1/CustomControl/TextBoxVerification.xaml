@@ -3,32 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TheMostGames_Task1.CustomControl"
+             xmlns:local="clr-namespace:TheMostGames_Task1.CustomControl" d:DataContext="{d:DesignInstance Type=local:TextBoxVerification}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <TextBox>
-        <TextBox.Style>
-            <Style TargetType="TextBox">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate>
-                            <Border BorderThickness="0.5"
-                                    BorderBrush="LightGray">
-                                <RichTextBox>
-                                    <FlowDocument>
-                                        <Paragraph>
-                                            <Run x:Name="Run"
-                                                 Initialized="Run_OnInitialized"
-                                                 Text="{Binding Text,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                                 FontWeight="Bold"/>
-                                        </Paragraph>
-                                    </FlowDocument>
-                                </RichTextBox>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-        </TextBox.Style>
-    </TextBox>
+    <RichTextBox x:Name="RichTextBox1" TextChanged="RichTextBox1_OnTextChanged">
+    </RichTextBox>
 </UserControl>
