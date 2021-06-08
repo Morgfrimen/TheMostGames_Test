@@ -31,6 +31,7 @@ namespace TheMostGames_Task1.CustomControl
 			InitializeComponent();
 			DataContext = this;
 			_RichBox = RichTextBox1;
+			startID = _RichBox.Document.ContentStart;
 		}
 
 		static TextBoxVerification()
@@ -60,30 +61,40 @@ namespace TheMostGames_Task1.CustomControl
 		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
 
 		private bool flag = false;
+		private TextPointer startID;
+		private TextPointer separator;
+		private TextPointer endId;
 		private void RichTextBox1_OnTextChanged(object sender, TextChangedEventArgs e)
 		{
 			if(flag)
 				return;
 			TextRange result = new TextRange(_RichBox.Document.ContentStart, _RichBox.Document.ContentEnd);
-			for (int index = 0; index < result.Text.Trim().Length; index++)
+			int lenght = result.Text.Trim().Length;
+			for (int index = 0; index < lenght; index++)
 			{
 				char c = result.Text[index];
 
 				if (c is ';' or ',')
 				{
-					TextRange rangBlock = new TextRange(_RichBox.CaretPosition, _RichBox.Document.ContentEnd);
+					startID = _RichBox.Document.ContentStart.GetPositionAtOffset(index + 2);
+					endId = _RichBox.Document.ContentEnd.GetPositionAtOffset(-2);
+					TextRange rangBlock = new TextRange(startID, endId);
 					flag = true;
 					rangBlock.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Black));
 				}
 				else if (!char.IsDigit(c))
 				{
-					TextRange rangBlock = new TextRange(_RichBox.CaretPosition.GetPositionAtOffset(-1), _RichBox.CaretPosition);
+					if (endId is null)
+						endId = _RichBox.CaretPosition;
+					TextRange rangBlock = new TextRange(startID, endId.GetPositionAtOffset(2));
 					flag = true;
 					rangBlock.ApplyPropertyValue(TextElement.ForegroundProperty,new SolidColorBrush(Colors.Red));
 				}
 				else
 				{
-					TextRange rangBlock = new TextRange(_RichBox.CaretPosition.GetPositionAtOffset(-1), _RichBox.CaretPosition);
+					if (endId is null)
+						endId = _RichBox.CaretPosition;
+					TextRange rangBlock = new TextRange(startID, endId);
 					flag = true;
 					rangBlock.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Black));
 				}
